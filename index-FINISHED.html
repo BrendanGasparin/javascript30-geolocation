@@ -63,27 +63,11 @@
     const speed = document.querySelector('.speed-value');
 
     navigator.geolocation.watchPosition((data) => {
-    //navigator.geolocation.getCurrentPosition((data) => {
       console.log(data);
-      console.log(data.coords.speed);
-      console.log(data.coords.heading);
       speed.textContent = data.coords.speed;
-      if(data.coords.speed === null) speed.textContent = 'Null ';
       arrow.style.transform = `rotate(${data.coords.heading}deg)`;
     }, (err) => {
-      switch(error.code) {
-                case error.PERMISSION_DENIED: alert("user did not share geolocation data");
-                break;
- 
-                case error.POSITION_UNAVAILABLE: alert("could not detect current position");
-                break;
- 
-                case error.TIMEOUT: alert("retrieving position timed out");
-                break;
- 
-                default: alert("unknown error");
-                break;
-            }
+      console.error(err);
     });
   </script>
 </body>
